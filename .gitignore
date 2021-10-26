@@ -76,3 +76,5 @@ typings/
 .fusebox/
 
 url.js
+playground/validator.js
+views/playground/signup.ejs
