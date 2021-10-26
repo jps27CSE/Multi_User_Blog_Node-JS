@@ -1,15 +1,50 @@
 <%- include('../../partials/head.ejs') %>
 
-<div class="container my-container">
-  <div class="jumbotron">
-    <h1>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, soluta.
-    </h1>
-    <p class="lead">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ea molestiae
-      harum placeat saepe consequatur rerum? Sed eligendi similique nihil?
-    </p>
+<div class="container my-container my-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card card-body">
+        <h4>Create A New Account</h4>
+        <form action="/auth/sign" method="POST">
+          <div class="form-group">
+            <label for="username">Enter Your User Name :</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Enter Your Valid Email :</label>
+            <input type="email" name="email" id="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="password">Enter Your User Password :</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Your Password :</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              class="form-control"
+            />
+          </div>
+          <input type="submit" class="btn btn-primary" value="Signup" />
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
 <%- include('../../partials/footer.ejs') %>
+
+</body>
+</html>
