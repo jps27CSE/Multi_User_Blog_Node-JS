@@ -13,7 +13,7 @@ const userSchema = new Schema(
       trim: true,
       required: true,
     },
-    passwords: {
+    password: {
       type: String,
       required: true,
     },
@@ -28,4 +28,4 @@ const userSchema = new Schema(
 );
 
 const User = model("User", userSchema);
-model.exports = User;
+module.exports = User;

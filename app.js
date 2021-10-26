@@ -1,8 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
-
+const { URL } = require("./url");
 const authRoutes = require("./routes/authRoute");
+const mongoose = require("mongoose");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -25,7 +26,14 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, () => {
-  console.log(`Server is Running on Port = http://localhost:${PORT}`);
-});
+mongoose
+  .connect(URL, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Database Connected");
+    app.listen(PORT, () => {
+      console.log(`Server is Running on Port = http://localhost:${PORT}`);
+    });
+  })
+  .catch((e) => {
+    console.log(e);
+  });
