@@ -8,7 +8,7 @@ const {
   logoutController,
 } = require("../controllers/authController");
 
-router.get("/signup", singnupGetController);
+router.get("/signup", signupGetController);
 router.post("/signup", signupPostController);
 
 router.get("/login", loginGetController);

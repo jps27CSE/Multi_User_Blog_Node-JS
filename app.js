@@ -2,6 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 
+const authRoutes = require("./routes/authRoute");
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -14,8 +16,9 @@ const middleware = [
 
 app.use(middleware);
 
+app.use("/auth", authRoutes);
+
 app.get("/", (req, res) => {
-  res.render("pages/auth/signup", { title: "Create a New Account" });
   res.json({
     message: "Hello World",
   });
