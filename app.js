@@ -5,9 +5,6 @@ const { URL } = require("./url");
 const authRoutes = require("./routes/authRoute");
 const mongoose = require("mongoose");
 
-//Plyaground Routes
-const validatorRoutes = require("./playground/validator");
-
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -21,9 +18,6 @@ const middleware = [
 app.use(middleware);
 
 app.use("/auth", authRoutes);
-
-//Playground
-app.use("/playground", validatorRoutes);
 
 app.get("/", (req, res) => {
   res.json({
