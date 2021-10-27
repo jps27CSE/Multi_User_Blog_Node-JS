@@ -33,11 +33,15 @@ const signupValidator = [
   body("password")
     .isLength({ min: 5 })
     .withMessage("Your Password Must Be Greate Than 5 Chars"),
-  body("confirmPassword").custom((confirmPassword, { req }) => {
-    if (confirmPassword != req.body.password) {
-      throw new Error("Password Does not Match");
-    }
-  }),
+  body("confirmPassword")
+    .isLength({ min: 5 })
+    .withMessage("Your Password Must Be Greate Than 5 Chars")
+    .custom((confirmPassword, { req }) => {
+      if (confirmPassword != req.body.password) {
+        throw new Error("Password Does not Match");
+      }
+      return true;
+    }),
 ];
 
 router.get("/signup", signupGetController);
