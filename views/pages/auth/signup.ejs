@@ -12,13 +12,13 @@
               type="text"
               name="username"
               id="username"
-              class="form-control <%= error.username ? 'is-invalid' : ''  %> "
+              class="form-control <%= error.username ? 'is-invalid' : ''  %> " value="<%= value.username ? value.username : '' %> "
             />
             <div class="invalid-feedback"><%= error.username && error.username  %> </div>
           </div>
           <div class="form-group">
             <label for="email" class="my-3">Enter Your Valid Email :</label>
-            <input type="email" name="email" id="email" class="form-control <%= error.email ? 'is-invalid' : ''  %> " />
+            <input type="email" name="email" id="email" class="form-control <%= error.email ? 'is-invalid' : ''  %> "  value="<%= value.email ? value.email : '' %> " />
             <div class="invalid-feedback"><%= error.email && error.email  %> </div>
           </div>
           <div class="form-group">
@@ -27,7 +27,7 @@
               type="password"
               name="password"
               id="password"
-              class="form-control <%= error.password ? 'is-invalid' : ''  %> "
+              class="form-control <%= error.password ? 'is-invalid' : ''  %> "  
             />
             <div class="invalid-feedback"><%= error.password && error.password  %> </div>
           </div>
