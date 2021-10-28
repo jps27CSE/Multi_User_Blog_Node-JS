@@ -5,6 +5,7 @@ const authRoutes = require("./routes/authRoute");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const { bindUserWithRequest } = require("./middleware/authMiddleware");
 
 const store = new MongoDBStore({
   uri: URL,
@@ -28,6 +29,7 @@ const middleware = [
     saveUninitialized: false,
     store: store,
   }),
+  bindUserWithRequest(),
 ];
 
 app.use(middleware);
