@@ -4,6 +4,7 @@ const app = express();
 const { URL } = require("./url");
 const authRoutes = require("./routes/authRoute");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -13,6 +14,11 @@ const middleware = [
   express.static("public"),
   express.urlencoded({ extended: true }),
   express.json(),
+  session({
+    secret: process.env.SECRET_KEY || "SECRET_KEY",
+    resave: false,
+    saveUninitialized: false,
+  }),
 ];
 
 app.use(middleware);

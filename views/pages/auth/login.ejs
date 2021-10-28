@@ -22,11 +22,6 @@
             <div class="invalid-feedback"><%= error.password && error.password  %> </div>
           </div>
           <input type="submit" class="btn btn-primary my-3" value="Login" />
-          <% if(isLoggedIn) { %>
-             
-            <a href="logout" class="btn btn-danger">Logout </a>
-
-            <% }%>
         </form>
         <a href="/auth/signup" class="my-3 text-center">Don't Have an Account? Create One</a>
       </div>
