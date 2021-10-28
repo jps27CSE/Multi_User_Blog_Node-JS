@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const { bindUserWithRequest } = require("./middleware/authMiddleware");
+const { setLocals } = require("./middleware/setLocals");
 
 const store = new MongoDBStore({
   uri: URL,
@@ -30,6 +31,7 @@ const middleware = [
     store: store,
   }),
   bindUserWithRequest(),
+  setLocals(),
 ];
 
 app.use(middleware);
