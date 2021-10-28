@@ -1,10 +1,18 @@
 const express = require("express");
 const morgan = require("morgan");
-const app = express();
 const { URL } = require("./url");
 const authRoutes = require("./routes/authRoute");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+
+const store = new MongoDBStore({
+  uri: URL,
+  collection: "sessions",
+  expires: 1000 * 60 * 60 * 2,
+});
+
+const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -18,6 +26,7 @@ const middleware = [
     secret: process.env.SECRET_KEY || "SECRET_KEY",
     resave: false,
     saveUninitialized: false,
+    store: store,
   }),
 ];
 
