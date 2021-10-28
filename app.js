@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const { bindUserWithRequest } = require("./middleware/authMiddleware");
-const { setLocals } = require("./middleware/setLocals");
+const setLocals = require("./middleware/setLocals");
+const dashboardRoute = require("./routes/dashboardRoute");
 
 const store = new MongoDBStore({
   uri: URL,
@@ -37,6 +38,7 @@ const middleware = [
 app.use(middleware);
 
 app.use("/auth", authRoutes);
+app.use("/dashboard", dashboardRoute);
 
 app.get("/", (req, res) => {
   res.json({
