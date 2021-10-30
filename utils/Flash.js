@@ -20,7 +20,7 @@ class Flash {
     return {
       success: flash.success,
       fail: flash.fail,
-      hasMessage: flash.hasMessage,
+      hasMessage: flash.hasMessage(),
     };
   }
 }

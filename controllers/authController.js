@@ -39,7 +39,6 @@ exports.signupPostController = async (req, res, next) => {
     });
 
     await user.save();
-    req.flash("success", "User Created Successfully");
     res.redirect("/auth/login");
   } catch (e) {
     console.log(e);
@@ -113,7 +112,6 @@ exports.logoutController = (req, res, next) => {
       console.log(err);
       return next(err);
     }
-    req.flash("success", "Successfully Logout");
     return res.redirect("/auth/login");
   });
 };
