@@ -9,8 +9,8 @@ const { bindUserWithRequest } = require("./middleware/authMiddleware");
 const setLocals = require("./middleware/setLocals");
 const dashboardRoute = require("./routes/dashboardRoute");
 const flash = require("connect-flash");
-//playground route
-const validatorRoute = require("./playground/validator");
+
+// const validatorRoute = require("./playground/validator");
 
 const store = new MongoDBStore({
   uri: URL,
@@ -44,8 +44,8 @@ app.use(middleware);
 app.use("/auth", authRoutes);
 
 app.use("/dashboard", dashboardRoute);
-//playground
-app.use("/playground", validatorRoute);
+
+// app.use("/playground", validatorRoute);
 
 app.get("/", (req, res) => {
   res.json({
