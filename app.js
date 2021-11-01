@@ -9,7 +9,8 @@ const { bindUserWithRequest } = require("./middleware/authMiddleware");
 const setLocals = require("./middleware/setLocals");
 const dashboardRoute = require("./routes/dashboardRoute");
 const flash = require("connect-flash");
-const config = require("./config/config");
+// const config = require("./config/config");
+const config = require("config");
 
 // const validatorRoute = require("./playground/validator");
 
@@ -21,13 +22,15 @@ const store = new MongoDBStore({
 
 const app = express();
 
+console.log(config.get("name"));
+
 console.log(app.get("env"));
 
-if (app.get("env").toLowerCase() === "development") {
-  console.log(config.dev.name);
-} else {
-  console.log(config.prod.name);
-}
+// if (app.get("env").toLowerCase() === "development") {
+//   console.log(config.dev.name);
+// } else {
+//   console.log(config.prod.name);
+// }
 
 if (app.get("env").toLowerCase() === "development") {
   app.use(morgan("dev"));
