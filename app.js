@@ -13,6 +13,7 @@ const flash = require("connect-flash");
 const config = require("config");
 const testConsole = require("debug")("app:test");
 const dbConsole = require("debug")("app:db");
+const chalk = require("chalk");
 
 testConsole("this is a test console");
 dbConsole("this is a DB console");
@@ -77,9 +78,11 @@ const PORT = process.env.PORT || 8080;
 mongoose
   .connect(URL, { useNewUrlParser: true })
   .then(() => {
-    console.log("Database Connected");
+    console.log(chalk.green("Database Connected"));
     app.listen(PORT, () => {
-      console.log(`Server is Running on Port = http://localhost:${PORT}`);
+      console.log(
+        chalk.cyan(`Server is Running on Port = http://localhost:${PORT}`)
+      );
     });
   })
   .catch((e) => {
