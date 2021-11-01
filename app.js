@@ -11,6 +11,11 @@ const dashboardRoute = require("./routes/dashboardRoute");
 const flash = require("connect-flash");
 // const config = require("./config/config");
 const config = require("config");
+const testConsole = require("debug")("app:test");
+const dbConsole = require("debug")("app:db");
+
+testConsole("this is a test console");
+dbConsole("this is a DB console");
 
 // const validatorRoute = require("./playground/validator");
 
