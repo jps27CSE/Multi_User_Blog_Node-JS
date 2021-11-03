@@ -1,0 +1,15 @@
+const router = require("express").Router();
+const { check, validationResult } = require("express-validator");
+
+router.get("/play", (req, res, next) => {
+  res.render("playground/play", {
+    title: "Playground",
+    flashMessage: {},
+  });
+});
+
+router.post("/play", (req, res, next) => {
+  res.redirect("/playground/play");
+});
+
+module.exports = router;
