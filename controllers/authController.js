@@ -41,7 +41,6 @@ exports.signupPostController = async (req, res, next) => {
     await user.save();
     res.redirect("/auth/login");
   } catch (e) {
-    console.log(e);
     next(e);
   }
 
@@ -102,14 +101,12 @@ exports.loginPostController = async (req, res, next) => {
       res.redirect("/dashboard");
     });
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
 exports.logoutController = (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
-      console.log(err);
       return next(err);
     }
     return res.redirect("/auth/login");
