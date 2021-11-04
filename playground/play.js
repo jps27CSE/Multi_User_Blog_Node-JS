@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { check, validationResult } = require("express-validator");
+const upload = require("../middleware/uploadMiddleware");
 
 router.get("/play", (req, res, next) => {
   res.render("playground/play", {
@@ -8,7 +8,11 @@ router.get("/play", (req, res, next) => {
   });
 });
 
-router.post("/play", (req, res, next) => {
+router.post("/play", upload.single("my-file"), (req, res, next) => {
+  if (req.file) {
+    console.log(req.file);
+  }
+
   res.redirect("/playground/play");
 });
 
