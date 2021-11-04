@@ -9,3 +9,23 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + "-" + Date.now() + "-" + file.originalname);
   },
 });
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+  fileFilter: (req, file, cb) => {
+    const type = /jpeg|jpg|png|gif/;
+    const extName = types.test(path.extName(file.originalname).toLowerCase());
+    const mimeType = type.test(file.mimetype);
+
+    if (extName && mimeType) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only Support Images"));
+    }
+  },
+});
+
+module.exports = upload;
