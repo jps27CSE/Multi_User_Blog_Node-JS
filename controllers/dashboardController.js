@@ -31,3 +31,15 @@ exports.createProfileGetController = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.createProfilePostController = (req, res, next) => {
+  next();
+};
+
+exports.editProfileGetController = (req, res, next) => {
+  next();
+};
+
+exports.editProfilePostController = (req, res, next) => {
+  next();
+};
