@@ -1,5 +1,7 @@
 const Flash = require("../utils/Flash");
 const Profile = require("../models/Profile");
+const { validationResult } = require("express-validator");
+const errorFormatter = require("../utils/validationErrorFormatter");
 
 exports.dashboardGetController = async (req, res, next) => {
   try {
@@ -33,7 +35,12 @@ exports.createProfileGetController = async (req, res, next) => {
 };
 
 exports.createProfilePostController = (req, res, next) => {
-  next();
+  let errors = validationResult(req).formatWith(errorFormatter);
+  console.log(errors.mapped());
+  res.render("pages/dashboard/create-profile", {
+    title: "Create Your Profile",
+    flashMessage: Flash.getMessage(req),
+  });
 };
 
 exports.editProfileGetController = (req, res, next) => {
