@@ -39,11 +39,12 @@
                                     <label for='name'>Enter Your Name</label>
                                     <input
                                      type="text"
-                                     class="form-control mt-2"
+                                     class="form-control mt-2 <%= error.name ? 'is-invalid' : '' %>%> "
                                      name="name"
                                      placeholder="Enter Your Name"
                                      id="name"
                                     />
+                                    <div class="invalid-feedback"><%= error.name %> </div>
                                 </div>
                                 <div>
                                         <div class="form-group mt-2">
@@ -62,20 +63,22 @@
                                             <label for='name'>Enter A Short Title</label>
                                             <input
                                              type="text"
-                                             class="form-control mt-2"
+                                             class="form-control mt-2 <%= error.title ? 'is-invalid' : '' %>%> "
                                              name="title"
                                              placeholder="Enter A Short Title"
                                              id="title"
                                             />
+                                            <div class="invalid-feedback"><%= error.title %> </div>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for='name'>Enter A Short Bio</label>
                                             <textarea
                                              
-                                             class="form-control mt-2"
+                                             class="form-control mt-2 <%= error.bio ? 'is-invalid' : ''%>%> "
                                              name="bio"
                                              id="bio"
                                             ></textarea>
+                                            <div class="invalid-feedback"><%= error.bio %> </div>
                                         </div>
                                     <div>
                                         <p class="lead mt-2">Your Social Links</p>
@@ -87,10 +90,13 @@
                                             </div>
                                             <input
                                              type="text"
-                                             class="form-control"
+                                             class="form-control <%= error.website ? 'is-invalid' : ''%>%> "
                                              placeholder="Website Link"
                                              name="website"
                                             >
+                                            <div class="invalid-feedback">
+                                               <%= error.website %> 
+                                            </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -100,10 +106,13 @@
                                             </div>
                                         <input
                                          type="text"
-                                         class="form-control"
+                                         class="form-control <%= error.facebook ? 'is-invalid' : ''%>%>"
                                          placeholder="Facebook Link"
                                          name="facebook"
                                         >
+                                        <div class="invalid-feedback">
+                                            <%= error.facebook %> 
+                                         </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -113,10 +122,13 @@
                                             </div>
                                             <input
                                             type="text"
-                                            class="form-control"
+                                            class="form-control <%= error.twitter ? 'is-invalid' : ''%>%>"
                                             placeholder="Twitter Link"
                                             name="twitter"
                                            >
+                                           <div class="invalid-feedback">
+                                            <%= error.twitter %> 
+                                         </div>
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="Create Profile">
