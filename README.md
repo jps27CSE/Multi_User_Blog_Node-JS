@@ -1,5 +1,5 @@
 # Multi User Blog
-## A Blog with Multi User who can create profile,edit profile and upload his blogs also can share comment and give likes 
+## A Blog with Multi User who can create profile,edit profile and upload blogs also can share comment and give likes 
 
 ## Links
 
