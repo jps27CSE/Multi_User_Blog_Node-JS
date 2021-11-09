@@ -96,6 +96,52 @@ exports.editProfileGetController = async (req, res, next) => {
   }
 };
 
-exports.editProfilePostController = (req, res, next) => {
-  next();
+exports.editProfilePostController = async (req, res, next) => {
+  let errors = validationResult(req).formatWith(errorFormatter);
+
+  let { name, title, bio, website, facebook, github } = req.body;
+
+  if (errors.isEmpty()) {
+    return res.render("pages/dashboard/create-profile", {
+      title: "Create Your Profile",
+      flashMessage: Flash.getMessage(req),
+      error: errors.mapped(),
+      profile: {
+        name,
+        title,
+        bio,
+        links: {
+          website,
+          facebook,
+          github,
+        },
+      },
+    });
+  }
+
+  try {
+    let profile = {
+      name,
+      title,
+      bio,
+      links: {
+        website: website || "",
+        facebook: facebook || "",
+        github: github || "",
+      },
+    };
+    let updatedProfile = await Profile.findOneAndUpdate(
+      { user: req.user._id },
+      { $set: profile },
+      { new: true }
+    );
+    res.render("pages/dashboard/edit-profile", {
+      title: "Edit Your Profile",
+      error: {},
+      flashMessage: Flash.getMessage(req),
+      profile: updatedProfile,
+    });
+  } catch (e) {
+    next(e);
+  }
 };
