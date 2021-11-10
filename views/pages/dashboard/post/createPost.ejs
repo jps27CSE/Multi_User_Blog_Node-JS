@@ -3,28 +3,28 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"></div>
+        <div class="col-md-2 "></div>
         <div class="col-md-10 my-5">
          <div class="card card-body mx-5 py-5">
             <form action="/posts/create" method="POST" enctype="multipart/form-data">
-                 <div class="form-group">
+                 <div class="form-group mt-2">
                     <label for="title">Enter Your Post Title</label>
-                    <input type="text" name="tite" id="title" class="form-control">
+                    <input type="text" name="tite" id="title" class="form-control mt-2">
                  </div>
-                 <div class="form-group">
+                 <div class="form-group mt-2">
                    <label for="tiny-mce-post-body">Enter Your Post Body</label>
-                   <textarea name='body' id='tiny-mce-post-body' class='form-control'></textarea>
+                   <textarea name='body' id='tiny-mce-post-body' class='form-control mt-2'></textarea>
                  </div>
-                 <div class='form-group'>
+                 <div class='form-group mt-2'>
                       <label for="tags">Enter Some Tags (Max 10)</label>
-                      <input type="text" name="tags" id="tags" placeholder= "tag1, tag2, tag3" class="form-control" >
+                      <input type="text" name="tags" id="tags" placeholder= "tag1, tag2, tag3" class="form-control mt-2" >
                  </div>
-                 <div class="input-group mb-3">
-                     <div class="input-group-prepend"> 
-                        <span class="input-group-text" id="inputGroupFile" >Upload</span>
+                 <div class="input-group mb-3 mt-2">
+                     <div class="input-group-prepend "> 
+                        <span class="input-group-text">Upload</span>
                      </div>
                      <div class="custom-file">
-                        <input type="file" name="post-thumbnail" class="custom-file-input">
+                        <input type="file" name="post-thumbnail" class="custom-file-input mt-2">
                         <label for="inputGroupFile" class="custom-file-label" >Choose File</label>
                      </div>
                  </div>
@@ -37,6 +37,9 @@
 </div>
 
 <%- include('../../../partials/footer.ejs') %>
+
+<script src="https://cdn.tiny.cloud/1/ff2tmcahpls37z6we1xl1qh1udoux2480mg2h00cpdvw9epe/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="/scripts/tinymce.js"></script>
 
 </body>
 </html>
