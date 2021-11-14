@@ -1,6 +1,9 @@
 const { validationResult } = require("express-validator");
 const Flash = require("../utils/Flash");
 const errorFormatter = require("../utils/validationErrorFormatter");
+const readingTime = require("reading-time");
+const Post = require("../models/Post");
+const Porfile = require("../models/Profile");
 
 exports.createPostGetController = (req, res, next) => {
   res.render("pages/dashboard/post/createPost", {
@@ -26,10 +29,33 @@ exports.createPostPostController = (req, res, next) => {
     });
   }
 
-  res.render("pages/dashboard/post/createPost", {
-    title: "Create A New Post",
-    error: {},
-    flashMessage: Flash.getMessage(req),
-    value: {},
+  if (tags) {
+    tags = tags.split(",");
+  }
+
+  let readTime = readingTime(body).text;
+
+  let post = new Post({
+    title,
+    body,
+    tags,
+    author: req.user._id,
+    thumbnail: "",
+    readTime,
+    likes: [],
+    dislikes: [],
+    comments: [],
   });
+
+  try {
+    let createdPost = await post.save();
+
+    await Profile.findOneAndUpdate(
+      { user: req.user._id },
+      { $push: { post: createdPost._id } }
+    );
+    return res.redirect(`/posts/edit/${createdPost._id}`);
+  } catch (e) {
+    next(e);
+  }
 };
