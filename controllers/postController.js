@@ -14,7 +14,7 @@ exports.createPostGetController = (req, res, next) => {
   });
 };
 
-exports.createPostPostController = (req, res, next) => {
+exports.createPostPostController = async (req, res, next) => {
   let { title, body, tags } = req.body;
 
   let errors = validationResult(req).formatWith(errorFormatter);
@@ -47,12 +47,16 @@ exports.createPostPostController = (req, res, next) => {
     comments: [],
   });
 
+  if (req.file) {
+    post.thumbnail = `/uploads/${req.file.filename}`;
+  }
+  // prettier-ignore
   try {
     let createdPost = await post.save();
 
     await Profile.findOneAndUpdate(
       { user: req.user._id },
-      { $push: { post: createdPost._id } }
+      { $push: { "posts": createdPost._id } }
     );
     return res.redirect(`/posts/edit/${createdPost._id}`);
   } catch (e) {
